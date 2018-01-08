@@ -35,4 +35,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dashboard">dashboard</string>
     <string name="menu_events_title">events</string>
+    <string name="log_out">Log Out</string>
+    <string name="logout_confirm">Are you sure you want to logout?</string>
 </resources>

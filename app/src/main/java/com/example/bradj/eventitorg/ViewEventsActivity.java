@@ -2,8 +2,10 @@ package com.example.bradj.eventitorg;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +23,7 @@ import com.example.bradj.eventitorg.Model.Entity.Event;
 import com.example.bradj.eventitorg.Model.Entity.EventList;
 import com.example.bradj.eventitorg.Model.Service.ApiUtils;
 import com.example.bradj.eventitorg.Model.Service.EventService;
+import com.example.bradj.eventitorg.Utilities.LoginUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,7 @@ public class ViewEventsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DataAdapter dataAdapter;
     private List<Event> dataArrayList;
+    private LoginUtil loginUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class ViewEventsActivity extends AppCompatActivity {
 //        mRecyclerView.addItemDecoration(itemDecoration);
 //
 //        loadEvents();
+        loginUtil=LoginUtil.getInstance();
         initViews();
 
     }
@@ -90,6 +95,11 @@ public class ViewEventsActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(ViewEventsActivity.this, SplashActivity.class);
                 startActivity(myIntent);
 
+                return true;
+
+            case R.id.action_log_out:
+//
+                logOut(item);
                 return true;
 
             default:
@@ -159,6 +169,40 @@ public class ViewEventsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void logOut(MenuItem item) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        Log.i("info","Logout clicked");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+// 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.logout_confirm)
+                .setTitle(R.string.log_out);
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                loginUtil.setLoggedIn(getApplicationContext(),false);
+                Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.dismiss();
+            }
+        });
+// Set other dialog properties
+
+// Create the AlertDialog
+
+// 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        builder.show();
+
     }
 
 
