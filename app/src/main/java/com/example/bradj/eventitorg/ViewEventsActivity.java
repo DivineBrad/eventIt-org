@@ -149,7 +149,7 @@ public class ViewEventsActivity extends AppCompatActivity {
     }
 
     public void loadEvent() {
-        mService.getEvent().enqueue(new Callback<Event>() {
+        mService.getEvent(1).enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
 
