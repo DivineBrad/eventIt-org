@@ -14,8 +14,20 @@ public class ApiUtils {
         return RetrofitClient.getClient(BASE_URL).create(EventService.class);
     }
 
+    public static RegisteredEventService getRegisteredEventService() {
+        return RetrofitClient.getClient(BASE_URL).create(RegisteredEventService.class);
+    }
+
     public static UserService getUserService() {
         return RetrofitClient.getClient(BASE_URL).create(UserService.class);
+    }
+
+    public static SubscribedOrgService getSubscribedOrgService() {
+        return RetrofitClient.getClient(BASE_URL).create(SubscribedOrgService.class);
+    }
+
+    public static OrganizationService getOrganizationService() {
+        return RetrofitClient.getClient(BASE_URL).create(OrganizationService.class);
     }
 }
 
