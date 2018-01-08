@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bradj.eventitorg.CheckInActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="103dp"
+        android:text="Please Turn on NFC and bring the phones together"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:id="@+id/textView3" />
+
+    <Button
+        android:id="@+id/cancelCheckIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/cancelCheckIn"
+        android:layout_below="@+id/cancelCheckIn"
+        android:layout_marginTop="85dp"
+        android:text="TextView" />
+
+</RelativeLayout>
