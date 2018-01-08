@@ -13,6 +13,10 @@ public class ApiUtils {
     public static EventService getEventService() {
         return RetrofitClient.getClient(BASE_URL).create(EventService.class);
     }
+
+    public static UserService getUserService() {
+        return RetrofitClient.getClient(BASE_URL).create(UserService.class);
+    }
 }
 
 
