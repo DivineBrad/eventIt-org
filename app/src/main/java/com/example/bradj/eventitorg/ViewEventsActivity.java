@@ -102,6 +102,12 @@ public class ViewEventsActivity extends AppCompatActivity {
                 logOut(item);
                 return true;
 
+            case R.id.action_checkIn:
+                Intent checkinIntent = new Intent(ViewEventsActivity.this, CheckInActivity.class);
+                startActivity(checkinIntent);
+
+                return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

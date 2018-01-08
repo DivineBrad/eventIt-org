@@ -16,6 +16,11 @@
         android:icon="@mipmap/ic_action_events"
         android:title="@string/menu_events_title"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_checkIn"
+        android:icon="@mipmap/ic_hourglass_full_black_24dp"
+        android:title="@string/menu_events_title"
+        app:showAsAction="always"/>
 
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
