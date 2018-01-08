@@ -27,7 +27,8 @@ public class CheckInActivity extends AppCompatActivity {
                     NfcAdapter.EXTRA_NDEF_MESSAGES);
 
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
-            mTextView.setText(new String(message.getRecords()[0].getPayload()));
+//            mTextView.setText(new String(message.getRecords()[0].getPayload()));
+            int regEveId=Integer.parseInt(new String(message.getRecords()[0].getPayload()));
 
         } else
             mTextView.setText("Waiting for NDEF Message");
