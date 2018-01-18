@@ -33,7 +33,9 @@ public interface RegisteredEventService {
     @DELETE("api/registration/{id}")
     @Headers("Content-Type: application/json;charset=UTF-8")
     Call<RegisteredEvent> deleteRegisteredEvent(@Path("id") long id);
-
+    @GET("api/registration/checked/{id}")
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    Call<RegisteredEvent> checkinUser(@Path("id") long id);
 
 
 
