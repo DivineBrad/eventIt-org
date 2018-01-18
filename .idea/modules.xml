@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\androidprojects\eventorgv1.1\eventIt-org\EventIt-org.iml" filepath="C:\androidprojects\eventorgv1.1\eventIt-org\EventIt-org.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventIt-org.iml" filepath="$PROJECT_DIR$/EventIt-org.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/eventIt-org.iml" filepath="$PROJECT_DIR$/.idea/eventIt-org.iml" />
     </modules>
   </component>
 </project>

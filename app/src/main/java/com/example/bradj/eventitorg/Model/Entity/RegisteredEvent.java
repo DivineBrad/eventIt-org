@@ -36,6 +36,9 @@ public class RegisteredEvent {
     @SerializedName("regLimit")
     @Expose
     private Integer regLimit;
+    @SerializedName("checkedin")
+    @Expose
+    private Integer checkedin;
 
     public Integer getRegId() {
         return regId;
@@ -109,4 +112,11 @@ public class RegisteredEvent {
         this.regLimit = regLimit;
     }
 
+    public Integer getCheckedin() {
+        return checkedin;
+    }
+
+    public void setCheckedin(Integer checkedin) {
+        this.checkedin = checkedin;
+    }
 }

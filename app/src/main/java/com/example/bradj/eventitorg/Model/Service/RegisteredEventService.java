@@ -27,9 +27,9 @@ public interface RegisteredEventService {
     @POST("api/registration")
     @Headers("Content-Type: application/json;charset=UTF-8")
     Call<RegisteredEvent> addRegisteredEvent(@Body RegisteredEvent regEvent);
-    @PUT("api/registration")
+    @GET("api/registration/checked/{regEveId}")
     @Headers("Content-Type: application/json;charset=UTF-8")
-    Call<RegisteredEvent> updateRegisteredEvent(@Body RegisteredEvent regEvent);
+    Call<RegisteredEvent> updateRegisteredEvent(@Path("regEveId") int regEveId);
     @DELETE("api/registration/{id}")
     @Headers("Content-Type: application/json;charset=UTF-8")
     Call<RegisteredEvent> deleteRegisteredEvent(@Path("id") long id);

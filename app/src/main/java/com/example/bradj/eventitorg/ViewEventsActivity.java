@@ -15,15 +15,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bradj.eventitorg.Model.Adapter.DataAdapter;
 import com.example.bradj.eventitorg.Model.Adapter.EventRVAdapter;
 import com.example.bradj.eventitorg.Model.Entity.Event;
 import com.example.bradj.eventitorg.Model.Entity.EventList;
+import com.example.bradj.eventitorg.Model.Entity.RegisteredEvent;
 import com.example.bradj.eventitorg.Model.Service.ApiUtils;
 import com.example.bradj.eventitorg.Model.Service.EventService;
+import com.example.bradj.eventitorg.Model.Service.RegisteredEventService;
 import com.example.bradj.eventitorg.Utilities.LoginUtil;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +48,10 @@ public class ViewEventsActivity extends AppCompatActivity {
     private DataAdapter dataAdapter;
     private List<Event> dataArrayList;
     private LoginUtil loginUtil;
+
+    private static final int PERMISSION_REQUEST = 200 ;
+    public static final int REQUEST_CODE=100;
+    private RegisteredEventService registeredEventService=ApiUtils.getRegisteredEventService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +114,12 @@ public class ViewEventsActivity extends AppCompatActivity {
             case R.id.action_checkIn:
                 Intent checkinIntent = new Intent(ViewEventsActivity.this, CheckInActivity.class);
                 startActivity(checkinIntent);
+
+                return true;
+
+            case R.id.action_checkIn_Barcode:
+                Intent checkinBarcodeIntent = new Intent(ViewEventsActivity.this, CheckInBarcodeActivity.class);
+                startActivityForResult(checkinBarcodeIntent,REQUEST_CODE);
 
                 return true;
 
@@ -240,4 +255,35 @@ public class ViewEventsActivity extends AppCompatActivity {
         Intent myIntent = new Intent(ViewEventsActivity.this, EventActivity.class);
         startActivity(myIntent);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        if(requestCode==REQUEST_CODE && resultCode==RESULT_OK){
+            if(data!=null){
+                final Barcode barcode=data.getParcelableExtra("barcode");
+                int regEveId=Integer.parseInt(barcode.displayValue);
+                Log.i("msg", ""+regEveId);
+                RegisteredEvent registeredEvent=new RegisteredEvent();
+                registeredEvent.setRegId(regEveId);
+                registeredEvent.setCheckedin(1);
+                registeredEventService.updateRegisteredEvent(regEveId).enqueue(new Callback<RegisteredEvent>() {
+                    @Override
+                    public void onResponse(Call<RegisteredEvent> call, Response<RegisteredEvent> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(ViewEventsActivity.this, "Check in Successful", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                            Toast.makeText(ViewEventsActivity.this, "Error Checking in", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<RegisteredEvent> call, Throwable t) {
+                        Toast.makeText(ViewEventsActivity.this, "Error Checking in due to a network error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }
+    }
+
 }

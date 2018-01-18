@@ -2,6 +2,7 @@ package com.example.bradj.eventitorg.Model.Service;
 
 
 import com.example.bradj.eventitorg.Model.Entity.OrgUser;
+import com.example.bradj.eventitorg.Model.Entity.RegisteredEvent;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -41,4 +43,6 @@ public interface UserService {
 //
 //    @GET("/api/event")
 //    Call<List<Event>> getEvents();
+
+
 }
